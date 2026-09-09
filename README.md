@@ -51,6 +51,20 @@ change the symbol in `lib/format.ts` if your currency differs.
 Visit `http://localhost:3000`. Sign in to `/admin/login` with the admin email/password
 you set in the backend's `.env` and seeded with `npm run seed`.
 
+## Production deployment
+
+Set `NEXT_PUBLIC_API_URL` in the hosting provider to the public backend URL ending
+in `/api`. Do not use `localhost` in production. Copy `.env.production.example`
+as a reference for the production value.
+
+The client production commands are:
+
+```powershell
+npm ci
+npm run build
+npm run start
+```
+
 ## How it talks to the backend
 
 - Public reads (menu, categories, settings, order tracking) call the API with no
