@@ -32,10 +32,13 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-paper px-5">
-      <div className="w-full max-w-sm">
-        <h1 className="font-display text-3xl text-ink mb-1">Restaurant Admin</h1>
-        <p className="text-ink/60 mb-8 text-sm">Sign in to manage orders and the menu.</p>
+    <div className="flex min-h-screen items-center justify-center bg-forest px-5 py-10">
+      <div className="surface w-full max-w-md p-7 sm:p-10">
+        <div className="mb-8">
+          <p className="font-display text-2xl text-forest">White House <span className="text-marigold">Admin</span></p>
+          <h1 className="mt-8 font-display text-3xl text-ink">Welcome back</h1>
+          <p className="mt-2 text-sm text-ink/60">Sign in to manage orders and the menu.</p>
+        </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -45,7 +48,7 @@ export default function AdminLoginPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded border border-line bg-white/60 px-4 py-2 focus-ring"
+              className="input focus-ring"
             />
           </div>
           <div>
@@ -55,14 +58,14 @@ export default function AdminLoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded border border-line bg-white/60 px-4 py-2 focus-ring"
+              className="input focus-ring"
             />
           </div>
           {error && <p className="text-clay text-sm">{error}</p>}
           <button
             type="submit"
             disabled={submitting}
-            className="w-full rounded bg-ink text-paper px-6 py-2.5 font-medium hover:bg-forest transition-colors focus-ring disabled:opacity-50"
+            className="min-h-12 w-full rounded-lg bg-forest px-6 py-2.5 font-semibold text-paper hover:bg-forestDark transition-colors focus-ring disabled:opacity-50"
           >
             {submitting ? 'Signing in…' : 'Sign in'}
           </button>

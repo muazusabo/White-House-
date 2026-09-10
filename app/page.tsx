@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { api } from '@/lib/api';
 import { Product, RestaurantSettings } from '@/lib/types';
-import { formatPrice, whatsappUrl } from '@/lib/format';
+import { formatPrice } from '@/lib/format';
 
 // Placeholder photography (source.unsplash.com is dead; Picsum is a stable
 // no-key placeholder service). Swap these for real photos of your food and
 // restaurant whenever you have them — that's the single highest-impact
 // change you can make to this page.
-const HERO_IMAGE = 'https://picsum.photos/seed/campus-hero/1800/1000';
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1800&q=85';
 const FALLBACK_DISH_IMAGE = (seed: string | number) =>
   `https://picsum.photos/seed/dish-${seed}/600/450`;
 
@@ -65,7 +65,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div>
+    <div className="overflow-hidden">
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div
@@ -74,12 +74,12 @@ export default function HomePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
 
-        <div className="relative mx-auto max-w-5xl px-5 pt-28 pb-24 md:pt-36 md:pb-32">
+        <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-24 md:px-8 md:pb-28 md:pt-36">
           <div className="max-w-2xl fade-up">
-            <p className="text-marigold font-medium mb-3 tracking-wide">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-marigold">
               {settings?.location || 'On campus, ready when you are'}
             </p>
-            <h1 className="font-display text-5xl md:text-6xl leading-[1.05] text-white">
+            <h1 className="max-w-3xl font-display text-5xl leading-[1.02] text-white md:text-7xl">
               Real food. Made fresh.
               <br />
               Ready when you are.
@@ -91,13 +91,13 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/menu"
-                className="btn-glow rounded bg-marigold text-ink px-6 py-3 font-medium hover:bg-marigoldDark hover:text-white transition-colors focus-ring"
+                className="btn-glow min-h-12 rounded-lg bg-marigold px-6 py-3 font-semibold text-ink hover:bg-marigoldDark hover:text-white transition-colors focus-ring"
               >
                 Browse the menu
               </Link>
               <Link
                 href="/track"
-                className="rounded border border-white/50 text-white px-6 py-3 font-medium hover:bg-white/10 transition-colors focus-ring"
+                className="min-h-12 rounded-lg border border-white/50 px-6 py-3 font-medium text-white hover:bg-white/10 transition-colors focus-ring"
               >
                 Track an order
               </Link>
@@ -107,12 +107,12 @@ export default function HomePage() {
       </section>
 
       {/* Feature strip */}
-      <section className="mx-auto max-w-5xl px-5 -mt-12 relative z-10 pb-20">
+      <section className="relative z-10 mx-auto -mt-10 max-w-7xl px-5 pb-20 md:px-8">
         <div className="grid sm:grid-cols-3 gap-5">
           {FEATURES.map((f) => (
             <div
               key={f.title}
-              className="card-lift bg-white rounded-lg border border-line p-6 shadow-sm"
+              className="card-lift surface p-6"
             >
               <svg
                 className="w-9 h-9 text-forest mb-4"
@@ -132,7 +132,7 @@ export default function HomePage() {
 
       {/* Popular dishes */}
       {dishes.length > 0 && (
-        <section className="mx-auto max-w-5xl px-5 pb-24">
+        <section className="mx-auto max-w-7xl px-5 pb-24 md:px-8">
           <div className="flex items-baseline justify-between mb-8">
             <div>
               <p className="text-forest font-medium mb-1">On the menu</p>
@@ -146,7 +146,7 @@ export default function HomePage() {
             {dishes.map((dish) => (
               <div
                 key={dish.id}
-                className="card-lift bg-white rounded-lg border border-line overflow-hidden"
+                className="card-lift surface overflow-hidden"
               >
                 <div
                   className="h-40 bg-cover bg-center"
@@ -154,7 +154,7 @@ export default function HomePage() {
                     backgroundImage: `url(${dish.imageUrl || FALLBACK_DISH_IMAGE(dish.id)})`,
                   }}
                 />
-                <div className="p-4">
+                <div className="p-5">
                   <div className="flex items-start justify-between gap-2">
                     <p className="font-medium">{dish.name}</p>
                     <p className="text-forest font-medium whitespace-nowrap">
@@ -178,9 +178,10 @@ export default function HomePage() {
           <h2 className="font-display text-3xl text-white text-center mb-10">
             Trusted by your classmates
           </h2>
-          <div className="grid sm:grid-cols-3 gap-6">
+          <div className="flex snap-x gap-4 overflow-x-auto pb-3 sm:grid sm:grid-cols-3 sm:overflow-visible">
             {TESTIMONIALS.map((t) => (
-              <div key={t.name} className="bg-white/5 border border-white/10 rounded-lg p-6">
+              <div key={t.name} className="min-w-[82vw] snap-start rounded-xl border border-white/10 bg-white/5 p-6 sm:min-w-0">
+                 <div className="mb-4 flex items-center gap-1 text-marigold" aria-label="5 out of 5 stars">★★★★★</div>
                 <p className="text-white/80 text-sm leading-relaxed mb-4">&ldquo;{t.quote}&rdquo;</p>
                 <p className="text-white font-medium text-sm">{t.name}</p>
                 <p className="text-white/50 text-xs">{t.role}</p>
@@ -194,7 +195,7 @@ export default function HomePage() {
       </section>
 
       {/* Practical info + CTA */}
-      <section className="mx-auto max-w-5xl px-5 py-20">
+      <section className="mx-auto max-w-7xl px-5 py-20 md:px-8">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="font-display text-3xl text-ink mb-4">
@@ -212,8 +213,8 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {settings && (settings.openingHours || settings.phone || settings.location) && (
-            <div className="border border-line rounded-lg p-6 bg-white/60 grid grid-cols-2 gap-6 text-sm">
+          {settings && (settings.openingHours || settings.location) && (
+            <div className="surface grid grid-cols-1 gap-6 p-6 text-sm sm:grid-cols-2">
               {settings.openingHours && (
                 <div>
                   <p className="text-ink/50 mb-1">Opening hours</p>
@@ -224,19 +225,6 @@ export default function HomePage() {
                 <div>
                   <p className="text-ink/50 mb-1">Where to collect</p>
                   <p className="font-medium">{settings.location}</p>
-                </div>
-              )}
-              {settings.phone && (
-                <div>
-                  <p className="text-ink/50 mb-1">Questions?</p>
-                  <a
-                    href={whatsappUrl(settings.phone) || undefined}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-medium text-[#168c4a] hover:underline"
-                  >
-                    Message us on WhatsApp
-                  </a>
                 </div>
               )}
             </div>

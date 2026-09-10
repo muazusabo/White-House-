@@ -6,7 +6,7 @@ import AdminSidebar from '@/components/admin/AdminSidebar';
 import StatusBadge from '@/components/site/StatusBadge';
 import { api, ApiError, assetUrl } from '@/lib/api';
 import { Order, OrderStatus } from '@/lib/types';
-import { formatPrice, formatDate, STATUS_LABEL, whatsappUrl } from '@/lib/format';
+import { formatPrice, formatDate, STATUS_LABEL } from '@/lib/format';
 
 const STATUSES: OrderStatus[] = [
   'PENDING',
@@ -60,7 +60,7 @@ function OrdersContent() {
 
   return (
     <div className="min-w-0 flex-1 px-4 py-6 sm:px-8 sm:py-8">
-      <h1 className="font-display text-3xl text-ink mb-6">Orders</h1>
+      <div className="mb-6"><p className="text-sm font-semibold uppercase tracking-[0.18em] text-forest">Operations</p><h1 className="font-display text-4xl text-ink">Orders</h1></div>
 
       <div className="grid sm:grid-cols-[1fr_auto_auto] gap-3 mb-5">
         <input
@@ -147,16 +147,6 @@ function OrdersContent() {
                       className="inline-block text-sm text-forest hover:underline mb-4"
                     >
                       View payment proof
-                    </a>
-                  )}
-                  {whatsappUrl(order.phone, `Hello ${order.customerName}, your White House Eatry order ${order.orderNumber} is currently ${STATUS_LABEL[order.status].toLowerCase()}.`) && (
-                    <a
-                      href={whatsappUrl(order.phone, `Hello ${order.customerName}, your White House Eatry order ${order.orderNumber} is currently ${STATUS_LABEL[order.status].toLowerCase()}.`) || undefined}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-block text-sm text-[#168c4a] hover:underline mb-4"
-                    >
-                      Message customer on WhatsApp
                     </a>
                   )}
                   <div className="flex flex-wrap gap-2">

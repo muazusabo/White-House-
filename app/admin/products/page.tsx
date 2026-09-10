@@ -49,7 +49,7 @@ function ProductsContent() {
   return (
     <div className="min-w-0 flex-1 px-4 py-6 sm:px-8 sm:py-8">
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-        <h1 className="font-display text-3xl text-ink">Products</h1>
+        <div><p className="text-sm font-semibold uppercase tracking-[0.18em] text-forest">Catalog</p><h1 className="font-display text-4xl text-ink">Products</h1></div>
         <div className="flex gap-2">
           <button
             onClick={() => setAddingCategory(true)}
@@ -59,7 +59,7 @@ function ProductsContent() {
           </button>
           <button
             onClick={() => setEditing('new')}
-            className="rounded bg-ink text-paper px-4 py-2 text-sm font-medium hover:bg-forest focus-ring"
+            className="min-h-11 rounded-lg bg-forest px-4 py-2 text-sm font-semibold text-paper hover:bg-forestDark focus-ring"
           >
             Add product
           </button>
@@ -72,7 +72,7 @@ function ProductsContent() {
         <p className="text-ink/50 mb-4">Create a category first, then add products to it.</p>
       )}
 
-      <div className="border border-line rounded bg-white/40 divide-y divide-line">
+      <div className="surface divide-y divide-line">
         {products.map((p) => (
           <div key={p.id} className="flex flex-wrap items-center gap-3 px-4 py-4 sm:flex-nowrap sm:gap-4 sm:px-5">
             <div className="h-14 w-14 shrink-0 overflow-hidden rounded bg-paperDim">

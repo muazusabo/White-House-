@@ -8,13 +8,11 @@
   }
 
   html {
-    background: #f5efe1;
+    background: #f7f3ea;
   }
 
   body {
-    @apply bg-paper text-ink font-sans;
-    background-image: radial-gradient(rgba(47, 107, 79, 0.07) 0.7px, transparent 0.7px);
-    background-size: 18px 18px;
+    @apply bg-paper text-ink font-sans antialiased;
   }
 
   ::selection {
@@ -64,8 +62,24 @@
 }
 
 .focus-ring:focus-visible {
-  outline: 2px solid #2F6B4F;
-  outline-offset: 2px;
+  outline: 3px solid #E89A00;
+  outline-offset: 3px;
+}
+
+.surface {
+  @apply rounded-xl border border-line bg-white shadow-sm;
+}
+
+.input {
+  @apply min-h-11 w-full rounded-lg border border-line bg-white px-4 py-2.5 text-sm transition-shadow;
+}
+
+.input:focus {
+  @apply border-forest ring-2 ring-forest/10;
+}
+
+.skeleton {
+  @apply animate-pulse rounded-lg bg-paperDim;
 }
 
 /* "Glow" CTA button — soft light sweep on hover, uiverse.io-inspired */

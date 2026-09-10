@@ -9,9 +9,9 @@ import { formatPrice } from '@/lib/format';
 
 function StatCard({ label, value }: { label: string; value: string | number }) {
   return (
-    <div className="border border-line rounded p-5 bg-white/50">
-      <p className="text-sm text-ink/50">{label}</p>
-      <p className="font-display text-3xl text-ink mt-1">{value}</p>
+    <div className="surface p-5">
+      <p className="text-sm text-ink/55">{label}</p>
+      <p className="mt-2 font-display text-3xl text-ink">{value}</p>
     </div>
   );
 }
@@ -68,7 +68,7 @@ function DashboardContent() {
 
   return (
     <div className="min-w-0 flex-1 px-4 py-6 sm:px-8 sm:py-8">
-      <h1 className="font-display text-3xl text-ink mb-8">Dashboard</h1>
+      <div className="mb-8"><p className="text-sm font-semibold uppercase tracking-[0.18em] text-forest">Overview</p><h1 className="font-display text-4xl text-ink">Good morning</h1><p className="mt-1 text-sm text-ink/55">Here’s what’s happening at your restaurant today.</p></div>
       {newOrderAlert > 0 && (
         <button
           type="button"
@@ -83,7 +83,7 @@ function DashboardContent() {
       )}
       {error && <p className="text-clay mb-6">{error}</p>}
       {summary && (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <StatCard label="Orders today" value={summary.totalOrdersToday} />
           <StatCard label="Pending" value={summary.pendingOrders} />
           <StatCard label="Preparing" value={summary.preparingOrders} />
@@ -95,9 +95,9 @@ function DashboardContent() {
         </div>
       )}
       {summary?.topItems && summary.topItems.length > 0 && (
-        <section className="mt-10 max-w-2xl">
-          <h2 className="font-display text-2xl text-ink mb-4">Best sellers today</h2>
-          <div className="border border-line rounded bg-white/40 divide-y divide-line">
+        <section className="mt-8 max-w-2xl">
+          <h2 className="mb-4 font-display text-2xl text-ink">Top selling meals</h2>
+          <div className="surface divide-y divide-line">
             {summary.topItems.map((item) => (
               <div key={item.productId} className="flex items-center justify-between px-4 py-3 text-sm">
                 <span>{item.name}</span>

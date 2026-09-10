@@ -20,25 +20,25 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-paper/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link href="/" className="group flex items-center gap-3 font-display text-2xl tracking-tight text-ink">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
+        <Link href="/" className="group flex min-w-0 items-center gap-2 font-display text-xl tracking-tight text-ink sm:text-2xl">
           {settings?.logoUrl ? (
             <img src={settings.logoUrl} alt="" className="h-9 w-9 rounded-full object-cover" />
           ) : (
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-forest text-paper text-lg transition-transform group-hover:rotate-12">✦</span>
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-forest text-paper text-lg transition-transform group-hover:rotate-6">✦</span>
           )}
           <span>{settings?.restaurantName || 'White House Eatry'}</span>
         </Link>
-        <nav className="flex items-center gap-4 text-sm sm:gap-6">
-          <Link href="/menu" className="hover:text-forest transition-colors">
+        <nav className="flex items-center gap-2 text-sm sm:gap-6">
+          <Link href="/menu" className="hidden hover:text-forest transition-colors sm:inline">
             Menu
           </Link>
-          <Link href="/track" className="hover:text-forest transition-colors">
+          <Link href="/track" className="hidden hover:text-forest transition-colors sm:inline">
             Track order
           </Link>
           <Link
             href="/cart"
-            className="relative rounded border border-ink px-3 py-1.5 transition-colors hover:bg-ink hover:text-paper"
+            className="relative min-h-11 rounded-lg bg-forest px-4 py-2.5 font-medium text-paper transition-colors hover:bg-forestDark"
           >
             Cart
             {itemCount > 0 && (

@@ -74,33 +74,34 @@ function SettingsContent() {
   }
 
   return (
-    <div className="min-w-0 flex-1 px-4 py-6 sm:px-8 sm:py-8 max-w-xl">
-      <h1 className="font-display text-3xl text-ink mb-6">Business settings</h1>
+    <div className="min-w-0 flex-1 px-4 py-6 sm:px-8 sm:py-8 max-w-2xl">
+      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-forest">Configuration</p>
+      <h1 className="mb-6 font-display text-4xl text-ink">Business settings</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
+        <div className="surface space-y-4 p-6">
           <label className="block text-sm font-medium mb-1">Restaurant name</label>
-          <input {...field('restaurantName')} className="w-full rounded border border-line bg-white/60 px-4 py-2 focus-ring" />
+          <input {...field('restaurantName')} className="input focus-ring" />
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">Logo URL</label>
-          <input {...field('logoUrl')} className="w-full rounded border border-line bg-white/60 px-4 py-2 focus-ring" />
+          <input {...field('logoUrl')} className="input focus-ring" />
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">White House mobile number</label>
-          <input {...field('phone')} className="w-full rounded border border-line bg-white/60 px-4 py-2 focus-ring" />
+          <input {...field('phone')} className="input focus-ring" />
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">Campus location</label>
-          <input {...field('location')} className="w-full rounded border border-line bg-white/60 px-4 py-2 focus-ring" />
+          <input {...field('location')} className="input focus-ring" />
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">Opening hours</label>
-          <input {...field('openingHours')} className="w-full rounded border border-line bg-white/60 px-4 py-2 focus-ring" />
+          <input {...field('openingHours')} className="input focus-ring" />
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">Collection instructions</label>
-          <textarea rows={3} {...field('collectionInstructions')} className="w-full rounded border border-line bg-white/60 px-4 py-2 focus-ring" />
+          <textarea rows={3} {...field('collectionInstructions')} className="input focus-ring" />
         </div>
         <div className="border-t border-line pt-5 mt-6">
           <h2 className="font-display text-xl text-ink mb-1">Payment account details</h2>

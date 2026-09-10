@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { api, ApiError } from '@/lib/api';
 import { Order, RestaurantSettings } from '@/lib/types';
 import OrderTicket from '@/components/site/OrderTicket';
-import { whatsappUrl } from '@/lib/format';
 import { useCart } from '@/context/CartContext';
 
 export default function OrderConfirmationPage({ params }: { params: { id: string } }) {
@@ -90,16 +89,6 @@ export default function OrderConfirmationPage({ params }: { params: { id: string
             Call White House Eatry on {settings.phone}
           </a>
         </div>
-      )}
-      {whatsappUrl(order.phone, `Hello White House Eatry, I am checking order ${order.orderNumber}.`) && (
-        <a
-          href={whatsappUrl(order.phone, `Hello White House Eatry, I am checking order ${order.orderNumber}.`) || undefined}
-          target="_blank"
-          rel="noreferrer"
-          className="block text-center mt-5 text-[#168c4a] hover:underline text-sm"
-        >
-          Contact the restaurant on WhatsApp
-        </a>
       )}
       <div className="text-center mt-8">
         <button

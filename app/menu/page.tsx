@@ -42,18 +42,22 @@ export default function MenuPage() {
   }, [products, activeCategory, search]);
 
   return (
-    <div className="mx-auto max-w-5xl px-5 py-12">
-      <h1 className="font-display text-4xl text-ink mb-2">Today&apos;s menu</h1>
-      <p className="text-ink/60 mb-8">Everything below is available for collection today.</p>
+    <div className="mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-14">
+      <div className="mb-8 max-w-2xl">
+        <p className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-forest">Fresh from the kitchen</p>
+        <h1 className="font-display text-4xl text-ink md:text-5xl">Choose your next meal</h1>
+        <p className="mt-3 text-ink/60">Everything below is available for collection today.</p>
+      </div>
 
-      <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
-        <CategoryTabs categories={categories} active={activeCategory} onChange={setActiveCategory} />
+      <div className="mb-10 space-y-4">
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search the menu"
-          className="sm:ml-auto w-full sm:w-64 rounded border border-line bg-white/60 px-4 py-2 text-sm focus-ring"
+          placeholder="Search meals, snacks and drinks"
+          aria-label="Search menu"
+          className="input max-w-xl"
         />
+        <CategoryTabs categories={categories} active={activeCategory} onChange={setActiveCategory} />
       </div>
 
       {loading && <p className="text-ink/50">Loading the menu&hellip;</p>}
@@ -65,13 +69,13 @@ export default function MenuPage() {
         </div>
       )}
 
-      <div className="space-y-10">
+      <div className="space-y-12">
         {categories
           .filter((c) => grouped.has(c.id))
           .map((c) => (
             <div key={c.id}>
-              <h2 className="font-display text-2xl text-ink mb-3">{c.name}</h2>
-              <div className="border border-line rounded bg-white/40 divide-y divide-line">
+              <h2 className="mb-4 font-display text-2xl text-ink">{c.name}</h2>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {grouped.get(c.id)!.map((p) => (
                   <ProductRow key={p.id} product={p} />
                 ))}
