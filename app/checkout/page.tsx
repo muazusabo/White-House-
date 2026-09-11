@@ -244,11 +244,11 @@ export default function CheckoutPage() {
 
           <div className="rounded border border-clay/30 bg-clay/5 px-4 py-4">
             <label className="block text-sm font-medium mb-1">Payment proof</label>
-            <p className="text-xs text-ink/60 mb-2">Attach a screenshot or PDF of your payment receipt. Maximum 5 MB.</p>
+            <p className="text-xs text-ink/60 mb-2">Attach any image or PDF of your payment receipt. Maximum 5 MB.</p>
             <input
               required
               type="file"
-              accept="image/jpeg,image/png,image/webp,application/pdf"
+              accept="image/*,application/pdf"
               onChange={(e) => setPaymentProof(e.target.files?.[0] || null)}
               className="block w-full text-sm"
             />
