@@ -13,13 +13,29 @@ export default function OrderConfirmationPage({ params }: { params: { id: string
   const { addItem } = useCart();
   const [reordering, setReordering] = useState(false);
   const [settings, setSettings] = useState<RestaurantSettings | null>(null);
+  const [readyNotice, setReadyNotice] = useState(false);
 
   useEffect(() => {
     let active = true;
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission().catch(() => {});
+    }
     async function load() {
       try {
         const next = await api.get<Order>(`/orders/${params.id}`);
-        if (active) setOrder(next);
+        if (active) {
+          setOrder((previous) => {
+            if (previous?.status !== 'READY' && next.status === 'READY') {
+              setReadyNotice(true);
+              if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification('Your order is ready', {
+                  body: `Order ${next.orderNumber} is ready for pickup.`,
+                });
+              }
+            }
+            return next;
+          });
+        }
       } catch (err) {
         if (active) setError(err instanceof ApiError ? err.message : 'Could not load that order.');
       }
@@ -82,6 +98,12 @@ export default function OrderConfirmationPage({ params }: { params: { id: string
         </div>
       )}
       <OrderTicket order={order} />
+      {readyNotice && order.status === 'READY' && (
+        <div role="alert" className="mt-5 rounded-xl border border-success/30 bg-success/10 px-4 py-4 text-center text-sm text-ink">
+          <p className="font-semibold text-forest">Your order is ready for pickup.</p>
+          <p className="mt-1 text-ink/60">Please bring your order number to the counter.</p>
+        </div>
+      )}
       {settings?.phone && (
         <div className="mt-5 rounded border border-forest/20 bg-forest/5 px-4 py-3 text-center text-sm text-ink/70">
           Questions about your order?{' '}

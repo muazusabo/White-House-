@@ -80,8 +80,14 @@ export default function CheckoutPage() {
         note: note || undefined,
         collectionDate,
         collectionTime,
-        items: lines.map((l) => ({ productId: l.product.id, quantity: l.quantity })),
+        items: lines.map((l) => ({
+          productId: Number(l.product.id),
+          quantity: Number(l.quantity),
+        })),
       });
+      if (!Number.isInteger(order.id) || order.id < 1) {
+        throw new Error('The server returned an invalid order reference. Please try again.');
+      }
       const proofData = new FormData();
       proofData.append('paymentProof', paymentProof);
       await api.upload<Order>(`/orders/${order.id}/payment-proof`, proofData);
