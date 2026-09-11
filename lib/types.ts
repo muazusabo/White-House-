@@ -61,8 +61,6 @@ export interface RestaurantSettings {
   accountName?: string | null;
   accountNumber?: string | null;
   paymentInstructions?: string | null;
-  maintenanceMode?: boolean;
-  maintenanceMessage?: string | null;
 }
 
 export interface CartLine {

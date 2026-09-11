@@ -80,23 +80,21 @@ export default function CheckoutPage() {
         note: note || undefined,
         collectionDate,
         collectionTime,
-        items: lines.map((l) => ({
-          productId: Number(l.product.id),
-          quantity: Number(l.quantity),
-        })),
+        items: lines.map((l) => ({ productId: l.product.id, quantity: l.quantity })),
       });
-      if (!Number.isInteger(order.id) || order.id < 1) {
-        throw new Error('The server returned an invalid order reference. Please try again.');
+      const orderId = Number(order.id);
+      if (!Number.isInteger(orderId) || orderId < 1) {
+        throw new Error('The order was created but the server did not return a valid order ID.');
       }
       const proofData = new FormData();
       proofData.append('paymentProof', paymentProof);
-      await api.upload<Order>(`/orders/${order.id}/payment-proof`, proofData);
+      await api.upload<Order>(`/orders/${orderId}/payment-proof`, proofData);
       window.localStorage.setItem(
         'campus_restaurant_customer',
         JSON.stringify({ customerName, lodgeNumber, phone, email }),
       );
       clear();
-      router.push(`/order/${order.id}`);
+      router.push(`/order/${orderId}`);
     } catch (err) {
       if (err instanceof ApiError) {
         setError(err.message);
@@ -244,11 +242,11 @@ export default function CheckoutPage() {
 
           <div className="rounded border border-clay/30 bg-clay/5 px-4 py-4">
             <label className="block text-sm font-medium mb-1">Payment proof</label>
-            <p className="text-xs text-ink/60 mb-2">Attach any image or PDF of your payment receipt. Maximum 5 MB.</p>
+            <p className="text-xs text-ink/60 mb-2">Attach a screenshot or PDF of your payment receipt. Maximum 5 MB.</p>
             <input
               required
               type="file"
-              accept="image/*,application/pdf"
+              accept="image/jpeg,image/png,image/webp,application/pdf"
               onChange={(e) => setPaymentProof(e.target.files?.[0] || null)}
               className="block w-full text-sm"
             />

@@ -5,7 +5,6 @@ import { CartProvider } from '@/context/CartContext';
 import { AuthProvider } from '@/context/AuthContext';
 import Navbar from '@/components/site/Navbar';
 import Footer from '@/components/site/Footer';
-import MaintenanceBanner from '@/components/site/MaintenanceBanner';
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -30,7 +29,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
           <CartProvider>
             <Navbar />
-            <MaintenanceBanner />
             <main className="min-h-[70vh]">{children}</main>
             <Footer />
           </CartProvider>

@@ -18,8 +18,6 @@ function SettingsContent() {
     accountName: '',
     accountNumber: '',
     paymentInstructions: '',
-    maintenanceMode: false,
-    maintenanceMessage: '',
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -41,8 +39,6 @@ function SettingsContent() {
           accountName: s.accountName || '',
           accountNumber: s.accountNumber || '',
           paymentInstructions: s.paymentInstructions || '',
-          maintenanceMode: Boolean(s.maintenanceMode),
-          maintenanceMessage: s.maintenanceMessage || '',
         }),
       )
       .catch(() => setError('Could not load settings.'))
@@ -51,7 +47,7 @@ function SettingsContent() {
 
   function field(key: keyof RestaurantSettings) {
     return {
-      value: typeof form[key] === 'string' ? form[key] : '',
+      value: form[key] || '',
       onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
         setForm((f) => ({ ...f, [key]: e.target.value })),
     };
@@ -86,27 +82,6 @@ function SettingsContent() {
         <div className="surface space-y-4 p-6">
           <label className="block text-sm font-medium mb-1">Restaurant name</label>
           <input {...field('restaurantName')} className="input focus-ring" />
-        </div>
-        <div className="surface space-y-4 p-6">
-          <div>
-            <h2 className="font-display text-xl text-ink">Website availability</h2>
-            <p className="mt-1 text-sm text-ink/60">Pause new visits while keeping staff access available.</p>
-          </div>
-          <label className="flex min-h-11 items-center gap-3 text-sm font-medium">
-            <input
-              type="checkbox"
-              checked={Boolean(form.maintenanceMode)}
-              onChange={(e) => setForm((f) => ({ ...f, maintenanceMode: e.target.checked }))}
-              className="h-5 w-5 accent-forest"
-            />
-            Enable maintenance mode
-          </label>
-          <textarea
-            rows={2}
-            placeholder="We are temporarily paused. Please check back soon."
-            {...field('maintenanceMessage')}
-            className="input focus-ring"
-          />
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">Logo URL</label>
