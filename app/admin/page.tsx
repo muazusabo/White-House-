@@ -67,7 +67,7 @@ function DashboardContent() {
   }, []);
 
   return (
-    <div className="min-w-0 flex-1 px-4 py-6 sm:px-8 sm:py-8">
+    <div className="min-w-0 flex-1 px-4 pb-6 pt-20 sm:px-8 sm:py-8">
       <div className="mb-8"><p className="text-sm font-semibold uppercase tracking-[0.18em] text-forest">Overview</p><h1 className="font-display text-4xl text-ink">Good morning</h1><p className="mt-1 text-sm text-ink/55">Here’s what’s happening at your restaurant today.</p></div>
       {newOrderAlert > 0 && (
         <button

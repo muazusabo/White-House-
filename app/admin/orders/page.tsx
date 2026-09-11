@@ -59,7 +59,7 @@ function OrdersContent() {
   }
 
   return (
-    <div className="min-w-0 flex-1 px-4 py-6 sm:px-8 sm:py-8">
+    <div className="min-w-0 flex-1 px-4 pb-6 pt-20 sm:px-8 sm:py-8">
       <div className="mb-6"><p className="text-sm font-semibold uppercase tracking-[0.18em] text-forest">Operations</p><h1 className="font-display text-4xl text-ink">Orders</h1></div>
 
       <div className="grid sm:grid-cols-[1fr_auto_auto] gap-3 mb-5">

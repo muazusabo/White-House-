@@ -74,7 +74,7 @@ function SettingsContent() {
   }
 
   return (
-    <div className="min-w-0 flex-1 px-4 py-6 sm:px-8 sm:py-8 max-w-2xl">
+    <div className="min-w-0 flex-1 px-4 pb-6 pt-20 sm:px-8 sm:py-8 max-w-2xl">
       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-forest">Configuration</p>
       <h1 className="mb-6 font-display text-4xl text-ink">Business settings</h1>
 

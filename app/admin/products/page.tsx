@@ -47,7 +47,7 @@ function ProductsContent() {
   }
 
   return (
-    <div className="min-w-0 flex-1 px-4 py-6 sm:px-8 sm:py-8">
+    <div className="min-w-0 flex-1 px-4 pb-6 pt-20 sm:px-8 sm:py-8">
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div><p className="text-sm font-semibold uppercase tracking-[0.18em] text-forest">Catalog</p><h1 className="font-display text-4xl text-ink">Products</h1></div>
         <div className="flex gap-2">

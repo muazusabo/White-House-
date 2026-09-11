@@ -11,10 +11,15 @@ export default function Navbar() {
   const pathname = usePathname();
   const { itemCount } = useCart();
   const [settings, setSettings] = useState<RestaurantSettings | null>(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     api.get<RestaurantSettings>('/settings').then(setSettings).catch(() => {});
   }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   if (pathname?.startsWith('/admin')) return null;
 
@@ -29,11 +34,11 @@ export default function Navbar() {
           )}
           <span>{settings?.restaurantName || 'White House Eatry'}</span>
         </Link>
-        <nav className="flex items-center gap-2 text-sm sm:gap-6">
-          <Link href="/menu" className="hidden hover:text-forest transition-colors sm:inline">
+        <nav className="hidden items-center gap-6 text-sm sm:flex">
+          <Link href="/menu" className="hover:text-forest transition-colors">
             Menu
           </Link>
-          <Link href="/track" className="hidden hover:text-forest transition-colors sm:inline">
+          <Link href="/track" className="hover:text-forest transition-colors">
             Track order
           </Link>
           <Link
@@ -48,7 +53,25 @@ export default function Navbar() {
             )}
           </Link>
         </nav>
+        <button
+          type="button"
+          aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={open}
+          onClick={() => setOpen((value) => !value)}
+          className="flex min-h-11 min-w-11 items-center justify-center rounded-lg bg-forest text-xl text-paper focus-ring sm:hidden"
+        >
+          {open ? '×' : '☰'}
+        </button>
       </div>
+      {open && (
+        <div className="border-t border-line bg-paper px-4 py-3 shadow-lg sm:hidden">
+          <nav className="mx-auto grid max-w-7xl gap-1">
+            <Link href="/menu" className="min-h-11 rounded-lg px-3 py-3 font-medium hover:bg-paperDim">Menu</Link>
+            <Link href="/track" className="min-h-11 rounded-lg px-3 py-3 font-medium hover:bg-paperDim">Track order</Link>
+            <Link href="/cart" className="min-h-11 rounded-lg px-3 py-3 font-medium hover:bg-paperDim">Cart {itemCount > 0 ? `(${itemCount})` : ''}</Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

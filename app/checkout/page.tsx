@@ -112,9 +112,9 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-5 py-12 grid md:grid-cols-[1fr_320px] gap-10">
+    <div className="mx-auto grid max-w-5xl gap-8 px-4 py-8 sm:px-5 sm:py-12 md:grid-cols-[1fr_320px] md:gap-10">
       <div>
-        <h1 className="font-display text-4xl text-ink mb-8">Checkout</h1>
+        <h1 className="mb-6 font-display text-4xl text-ink sm:mb-8">Checkout</h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {settings?.collectionInstructions && (
@@ -150,7 +150,7 @@ export default function CheckoutPage() {
                 required
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
-                className="w-full rounded border border-line bg-white/60 px-4 py-2 focus-ring"
+                className="input focus-ring"
               />
             </div>
             <div>
@@ -159,7 +159,7 @@ export default function CheckoutPage() {
                 required
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full rounded border border-line bg-white/60 px-4 py-2 focus-ring"
+                className="input focus-ring"
               />
             </div>
             <div>
@@ -169,7 +169,7 @@ export default function CheckoutPage() {
                 value={lodgeNumber}
                 onChange={(e) => setLodgeNumber(e.target.value)}
                 placeholder="e.g. Lodge A12"
-                className="w-full rounded border border-line bg-white/60 px-4 py-2 focus-ring"
+                className="input focus-ring"
               />
             </div>
           </div>
@@ -180,7 +180,7 @@ export default function CheckoutPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded border border-line bg-white/60 px-4 py-2 focus-ring"
+              className="input focus-ring"
             />
           </div>
 
