@@ -58,9 +58,18 @@ export default function Navbar() {
           aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
-          className="flex min-h-11 min-w-11 items-center justify-center rounded-lg bg-forest text-xl text-paper focus-ring sm:hidden"
+          className="relative flex min-h-11 min-w-11 items-center justify-center rounded-lg bg-forest text-xl text-paper focus-ring sm:hidden"
         >
           {open ? '×' : '☰'}
+          {itemCount > 0 && (
+            <span
+              key={itemCount}
+              aria-label={`${itemCount} item${itemCount === 1 ? '' : 's'} in cart`}
+              className="absolute -right-2 -top-2 flex h-6 min-w-6 animate-pulse items-center justify-center rounded-full bg-marigold px-1 text-xs font-bold text-ink ring-2 ring-paper"
+            >
+              {itemCount}
+            </span>
+          )}
         </button>
       </div>
       {open && (

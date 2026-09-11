@@ -5,6 +5,7 @@ import { api } from '@/lib/api';
 import { Category, Product } from '@/lib/types';
 import CategoryTabs from '@/components/site/CategoryTabs';
 import ProductRow from '@/components/site/ProductRow';
+import Spinner from '@/components/site/Spinner';
 
 export default function MenuPage() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -60,7 +61,7 @@ export default function MenuPage() {
         <CategoryTabs categories={categories} active={activeCategory} onChange={setActiveCategory} />
       </div>
 
-      {loading && <p className="text-ink/50">Loading the menu&hellip;</p>}
+      {loading && <Spinner label="Loading the menu…" />}
       {error && <p className="text-clay">{error}</p>}
 
       {!loading && !error && grouped.size === 0 && (

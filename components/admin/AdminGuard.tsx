@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
+import Spinner from '@/components/site/Spinner';
 
 export default function AdminGuard({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -13,7 +14,7 @@ export default function AdminGuard({ children }: { children: React.ReactNode }) 
   }, [loading, user, router]);
 
   if (loading || !user) {
-    return <div className="flex items-center justify-center min-h-screen text-ink/40">Loading…</div>;
+    return <div className="flex min-h-screen items-center justify-center text-ink/50"><Spinner label="Loading workspace…" /></div>;
   }
 
   return <>{children}</>;

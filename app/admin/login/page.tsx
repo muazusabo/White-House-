@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { ApiError } from '@/lib/api';
+import Spinner from '@/components/site/Spinner';
 
 export default function AdminLoginPage() {
   const { login, user } = useAuth();
@@ -67,7 +68,7 @@ export default function AdminLoginPage() {
             disabled={submitting}
             className="min-h-12 w-full rounded-lg bg-forest px-6 py-2.5 font-semibold text-paper hover:bg-forestDark transition-colors focus-ring disabled:opacity-50"
           >
-            {submitting ? 'Signing in…' : 'Sign in'}
+            {submitting ? <Spinner label="Signing in…" /> : 'Sign in'}
           </button>
         </form>
       </div>

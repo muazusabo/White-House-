@@ -6,6 +6,7 @@ import { useCart } from '@/context/CartContext';
 import { api, ApiError } from '@/lib/api';
 import { formatPrice } from '@/lib/format';
 import { Order, RestaurantSettings } from '@/lib/types';
+import Spinner from '@/components/site/Spinner';
 
 function isoDateFor(offsetDays: number): string {
   const d = new Date();
@@ -263,7 +264,7 @@ export default function CheckoutPage() {
             disabled={submitting}
             className="w-full rounded bg-ink text-paper px-6 py-3 font-medium hover:bg-forest transition-colors focus-ring disabled:opacity-50"
           >
-            {submitting ? 'Submitting your order…' : 'Place order — submit payment proof'}
+            {submitting ? <Spinner label="Submitting your order…" /> : 'Place order — submit payment proof'}
           </button>
         </form>
       </div>
